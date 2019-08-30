@@ -1,17 +1,15 @@
 #Load libraries
-library(readr)
-library(data.table)
-library(ggplot2)
-library(scales)
-library(cowplot)
-library(metafor)
-library(nlme)
-library(MuMIn)
-library(effects)
-library(tidyverse)
-library(ggsci)
-library(gganimate)
-library(ggrepel)
+# List of packages for session
+.packages = c("readr", "data.table", "scales", "cowplot", "metafor",
+"nlme", "MuMIn", "effects", "tidyverse", "ggsci", "gganimate", "ggrepel")
+
+# Install CRAN packages (if not already installed)
+.inst <- .packages %in% installed.packages()
+if(length(.packages[!.inst]) > 0) install.packages(.packages[!.inst])
+
+# Load packages into session 
+lapply(.packages, require, character.only=TRUE)
+
 #################################################################################################################
 ################################Code from the original paper (Darras et al. 2018)################################
 #################################################################################################################
@@ -20,7 +18,7 @@ library(ggrepel)
 #standard error function
 se <- function(x) sqrt(var(x,na.rm=TRUE)/length(na.omit(x)))
 #Get data
-meta0=fread("meta-analysis - data.csv")
+meta0=fread("data/meta-analysis - data.csv")
 #give ID to all studies
 meta0[,study_ID:=1:nrow(meta0)]
 #remove Acevedo due to unequal sampling
