@@ -1,0 +1,192 @@
+#Load libraries
+library(readr)
+library(data.table)
+library(ggplot2)
+library(scales)
+library(cowplot)
+library(metafor)
+library(nlme)
+library(MuMIn)
+library(effects)
+library(tidyverse)
+library(ggsci)
+library(gganimate)
+#Code from the original paper (Darras et al. 2018)
+#Prepare data and Run metaanalysis
+#standard error function
+se <- function(x) sqrt(var(x,na.rm=TRUE)/length(na.omit(x)))
+
+meta0=fread("meta-analysis - data.csv")
+#give ID to all studies
+meta0[,study_ID:=1:nrow(meta0)]
+#remove Acevedo due to unequal sampling
+meta0=meta0[first_author!="Acevedo"]
+#convert to numeric
+meta0=meta0[,total_time_min:=as.numeric(total_time_min)]
+
+# Table 1 -----------------------------------------------------------------
+
+#format column headers
+meta.studies=meta0[,.(Publication=paste(first_author,year),`Sampling time (min)`=total_time_min,Microphone=microphone,`Signal to noise ratio (minimum, dB)`=signal_to_noise,`Height (cm)`=height_cm,`Number of Microphones`=number_microphones)]
+
+# community differences ---------------------------------------------------
+
+#compute total richness with both methods combined
+meta0[,c("gamma_total_unlimited","gamma_total_identical")
+      :=.(gamma_point_unlimited+unique_sound_unlimited,gamma_point_identical+unique_sound_identical)]
+
+meta0[simultaneous_methods==1,.(common_species_unlimited=mean((gamma_point_unlimited-unique_point_unlimited)/gamma_total_unlimited,na.rm=T)
+                                ,unique_point_unlimited=mean(unique_point_unlimited/gamma_total_unlimited,na.rm=T)
+                                ,unique_sound_unlimited=mean(unique_sound_unlimited/gamma_total_unlimited,na.rm=T)
+                                ,common_species_identical=mean((gamma_point_identical-unique_point_identical)/gamma_total_identical,na.rm=T)
+                                ,unique_point_identical=mean(unique_point_identical/gamma_total_identical,na.rm=T)
+                                ,unique_sound_identical=mean(unique_sound_identical/gamma_total_identical,na.rm=T))]
+
+# calculate ROM ----------------------------------------------------------
+
+#calculate log transformed ratio of means for alpha and gamma richness
+#alpha richness identical
+alpha.identical=data.table(summary(escalc(measure="ROM"
+                                          ,m1i=alpha_sound_identical,m2i=alpha_point_identical
+                                          ,sd1i=alpha_sound_sd_identical,sd2i=alpha_point_sd_identical
+                                          ,n1i=alpha_sound_n_identical,n2i=alpha_point_n_identical
+                                          ,data=meta0[!is.na(alpha_point_n_identical)])))
+
+#alpha richness unlimited
+alpha.unlimited=data.table(summary(escalc(measure="ROM"
+                                          ,m1i=alpha_sound_unlimited,m2i=alpha_point_unlimited
+                                          ,sd1i=alpha_sound_sd_unlimited,sd2i=alpha_point_sd_unlimited
+                                          ,n1i=alpha_sound_n_unlimited,n2i=alpha_point_n_unlimited
+                                          ,data=meta0[!is.na(alpha_point_n_unlimited)])))
+#gamma richness identical
+gamma.identical=data.table(summary(escalc(measure="ROM"
+                                          ,m1i=gamma_sound_identical,m2i=gamma_point_identical
+                                          ,sd1i=rep(0,nrow(meta0[!is.na(gamma_total_identical)])),sd2i=rep(0,nrow(meta0[!is.na(gamma_total_identical)]))
+                                          ,n1i=total_time_min,n2i=total_time_min
+                                          ,data=meta0[!is.na(gamma_total_identical)])))
+
+#gamma richness unlimited
+gamma.unlimited=data.table(summary(escalc(measure="ROM"
+                                          ,m1i=gamma_sound_unlimited,m2i=gamma_point_unlimited
+                                          ,sd1i=rep(0,nrow(meta0[!is.na(gamma_total_unlimited)])),sd2i=rep(0,nrow(meta0[!is.na(gamma_total_unlimited)]))
+                                          ,n1i=total_time_min,n2i=total_time_min
+                                          ,data=meta0[!is.na(gamma_total_unlimited)])))
+
+#merge all ROM data together
+meta1=merge(meta0,merge(alpha.identical[,.(study_ID,alpha_ROM_identical=yi,alpha_variance_ROM_identical=vi,alpha_ci.lb_identical=ci.lb,alpha_ci.ub_identical=ci.ub)]
+                        ,merge(alpha.unlimited[,.(study_ID,alpha_ROM_unlimited=yi,alpha_variance_ROM_unlimited=vi,alpha_ci.lb_unlimited=ci.lb,alpha_ci.ub_unlimited=ci.ub)]
+                               ,merge(gamma.unlimited[,.(study_ID,gamma_ROM_unlimited=yi,gamma_variance_ROM_unlimited=vi)]
+                                      ,gamma.identical[,.(study_ID,gamma_ROM_identical=yi,gamma_variance_ROM_identical=vi)]
+                                      ,all=T,by="study_ID"),all=T,by="study_ID"),all=T,by="study_ID"),all=T,by="study_ID")
+
+
+# identical range (alpha) --------------------------------------------------------------
+
+#create publication=level column for random effect
+meta1[,publication:=paste(first_author,year)]
+
+#models for identical ranges
+RMA_alpha_identical=rma.mv(yi=alpha_ROM_identical,V=alpha_variance_ROM_identical
+                           ,data=meta1,random=list(~1|publication))
+
+
+
+### Add cumulative meta-analysis
+res <- rma(RMA_alpha_identical$yi, RMA_alpha_identical$vi, data=meta1, slab=paste(meta1$first_author, meta1$year, sep=", "))
+cres<-cumul(res, order=order(meta1$year))
+
+#png("Forest.png")
+forest(cres, col="blue")
+#dev.off()
+
+
+#cres
+#cres$total_time<-c(1360,150,40,480,7500,560,1440,2210,2210,290,570,300,600,2000,720,40,480,80,1730,100,590,4610,640,440,3140,640,600)
+#cres$zval
+
+cumzval<-cumsum(cres$zval)
+cum_sample<-cumsum(meta1$alpha_point_n_identical)  
+# cum_sample<-c(136,              186,
+#               190,              238,
+#               363,              419,
+#               455,              516,
+#               577,              647,
+#               660,              720,
+#               780,              878,
+#               894,              898,
+#               922,              930,
+#               1103,              1113,
+#               1172,              1633,
+#               1666,              1710,
+#               1752,              1784,
+#               1814)
+
+Year=meta1$year
+
+Year=gsub("a","",Year)
+Year=gsub("b","",Year)
+Year<-as.integer(Year)
+Year<-Year[order(Year)]
+# Year=c(2000,2002,2002,2002,2004,2009,2009,2009,2012,2012,2012,2012,2012,
+# 2014,2015,2015,2015,2015,2015,2016,2016,2016,2016,2017,2017,2017,2018)
+library(ggrepel)
+cum_df<-data.frame("z-score"=cumzval, "Cumulative n"=cum_sample, "Year"=Year)
+
+
+cum_df2<-cum_df[c(1,18,27),]
+#png("TSA.png", width=850, height =400)
+cum_df %>% 
+  ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
+  scale_fill_npg()+
+  labs(y="Cumulative z score", x="Cumulative sample size")+
+  geom_point(size=6)+
+  geom_line(colour="blue", linetype="dashed", size=1)+
+  ylim(c(-20,20))+
+  xlim(c(0,2000))+
+  
+  #annotate("text", x = 1, y = 10, label = sprintf('\u2b61'),size=30) +
+  #annotate("text", x = 3000, y = 10, label ="Favours automatic recorder",size=4) +
+  #annotate("text", x = 1, y = -10, label = sprintf('\u2b63'),size=30) +
+  #annotate("text", x = 3000, y = -10, label ="Favours human recorder",size=4) +
+  geom_text(data=cum_df2, aes(Cumulative.n,z.score,label=as.factor(Year)),hjust=1.3, vjust=1, colour="black")+
+  
+  #geom_text(aes(label=as.factor(Year)),hjust=0.5, vjust=0)+
+  geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
+  geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
+  theme_classic() +
+  theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
+  theme(legend.position = "none")+
+  theme(text=element_text(size=16,  family="serif"))
+  
+
+#sample_n(cum_df, 10)
+  
+
+#Animated
+#png("TSA.png", width=850, height =400)
+cum_df %>% 
+  rowid_to_column() %>% 
+  ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
+  scale_fill_npg()+
+  labs(y="Cumulative z score", x="Cumulative sample size")+
+  geom_point(size=6)+
+  geom_line(colour="blue", linetype="dashed", size=1)+
+  ylim(c(-20,20))+
+  xlim(c(0,2000))+
+  geom_text(aes(label=as.factor(Year)),hjust=1.3, vjust=1)+
+  geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
+  geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
+  theme_classic() +
+  theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
+  theme(legend.position = "none")+
+  theme(text=element_text(size=16,  family="serif"))+
+  transition_reveal(rowid)
+
+  #+
+  #theme_cowplot()
+  
+#dev.off()
+
+
+
+
