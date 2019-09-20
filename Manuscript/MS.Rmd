@@ -1,5 +1,5 @@
 ---
-title: "Research waste in applied ecology and conservation"
+title: "Maximising the leverage of existing knowledge could reduce research waste in applied ecology and conservation"
 csl: nature.csl
 output:
   pdf_document:
@@ -28,31 +28,30 @@ Matthew J. Grainger^1^*, Frederike C. Bolam^2^, Gavin B. Stewart^2^, Erlend B. N
 
 *corresponding author: matthew.grainger\@nina.no
 
-*Wider adoption of methods such as cumulative meta-analysis is vital to reduce research waste in ecology and conservation. A formal assessment of the accumulated knowledge prior to research approval would reduce the waste in already limited resources caused by asking questions of low priority. Researchers, funders and decision-makers all share the responsibility to reduce research waste.*  
+*Where research does not lead to benefits to society, it may be considered a waste of resources, especially when publicly funded. A formal assessment of the accumulated knowledge prior to research approval would reduce the waste of already limited resources caused by asking low priority questions. There is an urgent need for a change in research workflows so that pre-existing knowledge is better utilised in designing new research.*  
 
-“Research waste” is a well established concept in medical research @glasziou2018research. Research is wasted when its outcomes cannot be used for the benefit of society @chalmers2009avoidable. Waste can occur at any of the four stages of research @chalmers2009avoidable; question setting; methods; accessibility; and reporting. In recent years there has been an increased focus in ecology on methods (e.g. @fraser2018questionable; @nilsen_bowler_linnell_2019) which have called for methodological improvements in individual studies. Open science is fast becoming mainstream in ecological publishing which is vastly improving accessibility @powers2019open. Evidence synthesis approaches such as systematic review and meta-analysis have become stalwarts of ecology and conservation research @gurevitch2018meta leading to improved reporting for the benefit of decision-makers. Despite these advances research waste still occurs in ecology and here we focus on the critical area of question setting where ecology and conservation can make large steps forward in research waste reduction.
+“Research waste” is a well established concept in medical research @glasziou2018research. Research is wasted when its outcomes cannot be used for the benefit of society , for example because no new knowledge is gained or the knowledge gained cannot be applied in practice. Waste can occur at any of the four stages of research @chalmers2009avoidable; question setting; methods; accessibility; and reporting (Figure 1; Table 1). In medicine, research waste was estimated in 2009 to cost US$1bn @chalmers2009avoidable, with little improvement in the last decade1. There is little reason to suspect that the situation is substantially different in ecology and conservation, although there are no field-wide formal assessments of research waste. Emerging topics are however beginning to address some of the issues, for example through methodological improvements in individual studies (e.g.  @fraser2018questionable; @nilsen_bowler_linnell_2019) as well as a focus on open science and evidence synthesis, leading to improved accessibility and reporting  @powers2019open; @gurevitch2018meta. Here we focus on the critical area of question setting, where ecology and conservation can make large steps forward in research waste reduction.
 
-The question setting stage has two related areas where research waste can be reduced. Namely,  new studies do not take into account the body of evidence that have taken place prior to them and as a consequence low priority questions are being asked. A low priority question may be one that is not relevant to stakeholders (to remedy this stakeholders should be apart of the research commissioning process @chalmers2009avoidable), or be one that has already been sufficiently addressed in the literature so that we already know the outcome with high certainty. Any further studies could then be considered a waste of resources, because they will not add (or only marginally so) to our knowledge base.
+The question setting stage has two related areas where research waste can be reduced by taking into account the existing body of evidence. Firstly, new studies may ask low priority questions - those that are irrelevant to stakeholders. The remedy to this is relatively straightforward; stakeholders should be apart of the research commissioning process @chalmers2009avoidable. Secondly, if a topic has been sufficiently addressed in the existing literature we might already know the outcome with high certainty. Further studies that fail to leverage this existing knowledge are at high risk of wasting precious research resources. 
 
-In medicine, one way in which this particular type of research waste has been identified is by conducting cumulative meta-analysis based on effect sizes from previous studies. A cumulative meta-analysis typically describes the accumulation of evidence (e.g., about the effectiveness of an intervention) across time, and  available estimates are added to the analysis in chronological order @lau1992cumulative. Using cumulative meta-analysis, a researcher,  funding agency or decision maker can identify the point at which there is sufficient evidence to be confident that a reported effect is true. At this stage new trials are no longer required to predict the outcome with satisfactory certainty.
+In medicine, one way in which this particular type of research waste has been identified is by conducting cumulative meta-analysis based on effect sizes from previous studies. A cumulative meta-analysis typically describes the accumulation of evidence (e.g., about the effectiveness of an intervention) across time, and available estimates are added to the analysis in chronological order  @lau1992cumulative. Using cumulative meta-analysis, a researcher, funding agency or decision maker can identify the point at which there is sufficient evidence to be confident that a reported effect is true. At this stage new trials are no longer required to predict the outcome with satisfactory certainty.
 
-As an example of the approach applied to an applied ecology situation we can look at the potential of autonomous acoustic recorders to replace human observers in wildlife sampling and monitoring, which now has a long history in the ecological literature (starting from at least @ralph1995monitoring). Technological advances over the last two decades have allowed this potential to be explored fully. Well over 150 field studies have been carried out that address this issue either directly or indirectly and seek to address the question of whether acoustic recorders can replace human observers in wildlife surveys. A meta-analysis in 2018 @darras2018comparing
- explored the pooled effect of these studies using a meta-analytic approach to estimate species richness of birds. Based on the combined evidence from the included studies, they concluded that when human observers (using point counts) and sound recorders sample areas of equal size then there is no difference between estimates of bird species richness. When properly conducted (see specific advice in @darras2018comparing), it can be inferred that sound recorders can be used to monitor aspects of biodiversity as efficiently as human observers.  Twenty-eight primary studies published between 2000 and 2017 were included in their meta-analysis. 
+As an example of the approach applied to an applied ecology situation we can look at the potential of autonomous acoustic recorders to replace human observers in wildlife sampling and monitoring, which now has a long history in the ecological literature (starting from at least @ralph1995monitoring). Technological advances over the last two decades have allowed this potential to be explored fully. Well over 150 field studies have been carried out that address this issue either directly or indirectly and seek to address the question of whether acoustic recorders can replace human observers in wildlife surveys. A meta-analysis in 20189 explored the pooled effect of these studies using a meta-analytic approach to estimate species richness of birds. Based on the combined evidence from the included studies, they concluded that when human observers (using point counts) and sound recorders sample areas of equal size then there is no difference between estimates of bird species richness. When properly conducted (see specific advice in @darras2018comparing), it can be inferred that sound recorders can be used to monitor aspects of biodiversity as efficiently as human observers. Twenty-eight primary studies published between 2000 and 2017 were included in their meta-analysis. 
 
-Taking the role as a research funder or researcher at the question setting stage, it would be nice if we could know if we need another study quantifying the difference between acoustic recorders and human observers for bird survey point counts to make this conclusion? This is exactly the situation where the cumulative meta-analysis approach is instrumental. 
+Taking the role as a research funder or researcher at the question setting stage, it would be valuable if we could know if we need another study quantifying the difference between acoustic recorders and human observers for bird survey point counts to make this conclusion? This is exactly the situation where the cumulative meta-analysis approach is instrumental. 
 
-We extracted the data and R code from @darras2018comparing to recreate their analysis. Building on their random effects meta-analysis we ran a cumulative meta-analysis using the “cumul” function in the “metafor” @metafor
-package in R. The cumulative meta-analysis was ordered by publication year and plotted using the “forest” function. To assess the point at which there is sufficient evidence and no further investigations are required we plotted the z-curve in relation to the cumulative sample size. The thresholds for significance was a z value of 1.96 or -1.96. When the z curve crosses this threshold then the level of evidence is considered sufficient. This approach (known as “trial sequential analysis”) is well developed in medicine @wetterslev2008trial. Plots were produced using ggplot2 @ggplot2.
+We extracted the data and R code from @darras2018comparing to recreate their analysis. Building on their random effects meta-analysis we ran a cumulative meta-analysis using the “cumul” function in the “metafor” @metafor package in R. The cumulative meta-analysis was ordered by publication year and plotted using the “forest” function. To assess the point at which there is sufficient evidence and no further investigations are required we plotted the z-curve in relation to the cumulative sample size. The thresholds for significance was a z value of 1.96 or -1.96. When the z curve crosses this threshold then the level of evidence is considered sufficient. This approach (known as “trial sequential analysis”) is well developed in medicine @wetterslev2008trial. 
 
-The effect size (i.e the magnitude of the difference between intervention and control) of studies investigating the difference between autonomous acoustic recorders and human observers in terms of bird species richness estimates was consistently close to 0 in each study (Figure 1). This means that there was no clear difference between acoustic recorders and human observers on bird point counts. Trial sequential analysis (Figure 2) shows that the significance threshold (between -1.96 and 1.96) was crossed in 2015 favouring automatic recorders over human observers in bird point surveys. This suggests that studies undertaken post 2015 were a “waste” of research resources.
+The effect size (i.e the magnitude of the difference between intervention and control) of studies investigating the difference between autonomous acoustic recorders and human observers in terms of bird species richness estimates was consistently close to 0 in each study (Figure 3). This means that there was no clear difference between acoustic recorders and human observers on bird point counts. Trial sequential analysis (Figure 2) shows that the significance threshold (between -1.96 and 1.96) was crossed in 2015 favouring automatic recorders over human observers in bird point surveys. This suggests that studies undertaken post 2015 were a “waste” of research resources.
 
-To reduce research waste we need to be able to first quantify it. One option is to use cumulative meta-analysis. The approach demonstrated here is well established in the medical literature. It is well known and tested. Therefore, it should not be challenging to integrate in to conservation and applied ecology workflows. Ideally, funding decisions will take into account the available evidence before giving grants to well studied topics.
+To reduce research waste we need to be able to first quantify it. One option is to use cumulative meta-analysis. The approach demonstrated here is well known and tested in the medical literature. Therefore, it should not be challenging to integrate into conservation and applied ecology workflows. Cumulative meta-analysis has already been used in our field to assess time-lag bias12 but is not commonly used in the way we have shown here. Ideally, funding decisions will take into account the available evidence before giving grants to well studied topics. There may of course be a time lag between identifying that we have sufficient information, and not conducting further research on a topic, due to timescales of publications of original research as well as associated meta-analyses. 
 
-More frequent application of systematic reviews combined with meta-analysis in general, and cumulative meta-analysis in particular, would be one important remedy to reduce research waste in ecology and conservation. However, there are at least two important caveats that need to be highlighted. First, is that currently, due to heterogeneity in reporting as well as the drive for novelty in publications that meta-analysis is challenging in applied ecology. There might not be sufficient good quality research to quantify the cumulative effect of even some apparently well studied phenomena. In cases such as this one might consider using a systems modelling approach to identify key areas of uncertainty in a topic that could be prioritised for research focus.
+More frequent application of systematic reviews combined with meta-analysis in general, and cumulative meta-analysis in particular, would be one important remedy to reduce research waste in ecology and conservation. However, there are at least two important caveats. First, due to heterogeneity in reporting as well as the drive for novelty in publications, meta-analysis is currently challenging in applied ecology. There might not be sufficient good quality research to quantify the cumulative effect of even some apparently well studied phenomena. In cases such as this one might consider using a systems modelling approach to identify key areas of uncertainty in a topic that could be prioritised for research focus.
 
-It is also important to remember that research funding might not only be about answering a research question and could be more targeted to the development of researchers skills (PhD students, etc.) or to engaging with stakeholders. Funding for training, skill development and outreach activities should be given appropriate weight in any funding prioritisation.
+Second, it is important to remember that research funding might not only be about answering a research question and could be more targeted to the development of researchers’ skills (PhD students, etc.) or to engaging with stakeholders. Funding for training, skill development and outreach activities should be given appropriate weight in any funding prioritisation.
 
-Research waste can be reduced and it is the responsibility of funders as well as individual researchers to do so. We agree with the statement targeted at medicine 25 years ago that “We need less research, better research, and research done for the right reasons” @altman1994scandal. Without a change in focus ecology and conservation funding will continue to be wasted which will be detrimental to our efforts to provide solutions to global challenges.  
+Research waste can be reduced and it is the responsibility of funders as well as individual researchers to do so. We agree with the statement targeted at medicine 25 years ago that “We need...better research, and research done for the right reasons” @altman1994scandal. Without a change in focus ecology and conservation funding will continue to be wasted which will be detrimental to our efforts to provide solutions to global societal challenges.    
+
 
 # References {-}
 
@@ -156,16 +155,53 @@ RMA_alpha_identical=rma.mv(yi=alpha_ROM_identical,V=alpha_variance_ROM_identical
 ```
 
 
-```{r Add Trial, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cumulative forest plot of the meta-analysis of Darras et al. (2018) on the difference between human observers and acoustic recorders in terms of species richness.\\label{forest}"}
-### Add cumulative meta-analysis
-res <- rma(RMA_alpha_identical$yi, RMA_alpha_identical$vi, data=meta1, slab=paste(meta1$first_author, meta1$year, sep=", "))
-cres<-cumul(res, order=order(meta1$year))
-forest(cres, col="blue")
+```{r flowc, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "The production of research flows through four stages all of which can lead to research waste [@fraser2018questionable]. Ecology and conservation have begun to reduce waste by focusing on methodological improvements and open science. Evidence synthesis (including reporting to decision makers) can be considered another stage of research production. The failure to make use of the available evidence in the design of new studies is another avenue to research waste. The use of cumulative meta-analysis is one way in which this type of research waste can be reduced.\\label{flow}"}
+library(DiagrammeR)
+
+grViz("
+digraph boxes_and_circles {
+
+  # a 'graph' statement
+  graph [overlap = true, fontsize = 10]
+
+  # several 'node' statements
+  node [shape = box,
+        fontname = Helvetica]
+      tab1 [label = '@@1',color = blue]
+      tab2 [label = '@@2',color = blue]
+      tab3 [label = '@@3',color = blue]
+      tab4 [label = '@@4',color = blue]
+      tab5 [label = '@@5',color = red]
+  node [shape = circle,
+        fixedsize = true,
+        width = 2, color=green] // sets as circles
+    tab6 [label = '@@6']
+    # several 'edge' statements
+ tab1->tab2->tab3->tab4
+ tab1->tab5
+  tab2->tab5
+   tab3->tab5
+    tab4->tab5
+    tab4->tab6 
+    tab6->tab1 [style=dotted]
+        tab6->tab2 [style=dotted]
+        tab6->tab5 [style=dashed]
+    
+}
+      [1]: 'Questions relevant to stakeholders'
+      [2]: 'Appropriate design & methods'
+      [3]: 'Accessible full publication'
+      [4]: 'Unbiased reporting'
+      [5]: 'Research waste'
+      [6]: 'Evidence synthesis'
+", height=1000)
+
 ```
 
 
-```{r Add seq, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Trial sequential analysis. The red dashed lines indicate the significance threshold (between -1.96 and 1.96). When the z-curve crosses the red line then there is sufficient evidence and no new trials are required. \\label{seq}"}
-
+```{r Add seq, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Trial sequential analysis. The red dashed lines indicate the significance threshold (between -1.96 and 1.96). When the z-curve crosses the red line then there is sufficient evidence and no new trials are required [@ggplot2]. \\label{seq}"}
+res <- rma(RMA_alpha_identical$yi, RMA_alpha_identical$vi, data=meta1, slab=paste(meta1$first_author, meta1$year, sep=", "))
+cres<-cumul(res, order=order(meta1$year))
 cumzval<-cumsum(cres$zval)
 cum_sample<-cumsum(meta1$alpha_point_n_identical)  
 # cum_sample<-c(136,              186,
@@ -221,5 +257,11 @@ cum_df %>%
   theme(text=element_text(size=16,  family="serif"))
 ```
 
+
+```{r Add Trial, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cumulative forest plot of the meta-analysis of Darras et al. (2018) on the difference between human observers and acoustic recorders in terms of species richness.\\label{forest}"}
+### Add cumulative meta-analysis
+
+forest(cres, col="blue")
+```
 
 
