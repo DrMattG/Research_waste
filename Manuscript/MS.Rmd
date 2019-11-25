@@ -171,30 +171,50 @@ digraph boxes_and_circles {
       tab2 [label = '@@2',color = blue]
       tab3 [label = '@@3',color = blue]
       tab4 [label = '@@4',color = blue]
-      tab5 [label = '@@5',color = red]
+      tab6 [label = '@@6',color = blue]
+      tab8 [label = '@@8',color = red]
+      tab9 [label = '@@9',color = red]
+      tab10[label = '@@10',color = red]
+      tab11[label = '@@11',color = red]
+      
   node [shape = circle,
         fixedsize = true,
-        width = 2, color=green] // sets as circles
-    tab6 [label = '@@6']
-    # several 'edge' statements
- tab1->tab2->tab3->tab4
- tab1->tab5
-  tab2->tab5
-   tab3->tab5
-    tab4->tab5
-    tab4->tab6 
-    tab6->tab1 [style=dotted]
-        tab6->tab2 [style=dotted]
-        tab6->tab5 [style=dashed]
+        width = 2, color=blue] // sets as circles
+    tab7 [label = '@@7']
     
-}
+    node [shape = circle,
+        fixedsize = true,
+        width = 2, color=red] // sets as circles
+    tab5 [label = '@@5']
+  
+    
+    # several 'edge' statements
+ tab1->tab2->tab3->tab4->tab6->tab7 [color=blue]
+ tab1->tab8 [color=red,style=dashed]
+  tab2->tab9 [color=red,style=dashed]
+   tab3->tab10 [color=red,style=dashed]
+    tab4->tab11 [color=red,style=dashed]
+    tab8->tab5[color=red,style=dashed]
+    tab9->tab5[color=red,style=dashed]
+    tab10->tab5[color=red,style=dashed]
+    tab11->tab5[color=red,style=dashed]
+    tab6->tab1 [style=dashed]
+        tab6->tab2 [style=dashed]
+    tab6->tab5 [color=red, style=dashed]
+        
+ }
       [1]: 'Questions relevant to stakeholders'
       [2]: 'Appropriate design & methods'
       [3]: 'Accessible full publication'
       [4]: 'Unbiased reporting'
-      [5]: 'Research waste'
+      [5]: 'Wasteful research'
       [6]: 'Evidence synthesis'
-", height=1000)
+      [7]: 'Utilisable research' 
+      [8]: 'Previous knowledge not accounted for'
+      [9]: 'Poor design; \\nquestionable research practices'
+      [10]: 'Publications not available to practitioners \\n& decision makers'
+      [11]: 'Lack of transparency'
+  ", height=1000)
 
 ```
 
@@ -234,10 +254,10 @@ cum_df<-data.frame("z-score"=cumzval, "Cumulative n"=cum_sample, "Year"=Year)
 cum_df2<-cum_df[c(1,18,27),]
 #png("TSA.png", width=850, height =400)
 cum_df %>% 
-  ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
+  ggplot(aes(cum_sample,z.score))+
   scale_fill_npg()+
   labs(y="Cumulative z score", x="Cumulative sample size")+
-  geom_point(size=6)+
+  geom_point(size=3, colour="blue")+
   geom_line(colour="blue", linetype="dashed", size=1)+
   ylim(c(-20,20))+
   xlim(c(0,2000))+
