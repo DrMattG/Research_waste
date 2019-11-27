@@ -92,11 +92,19 @@ RMA_alpha_identical=rma.mv(yi=alpha_ROM_identical,V=alpha_variance_ROM_identical
 ### Add cumulative meta-analysis
 res <- rma(RMA_alpha_identical$yi, RMA_alpha_identical$vi, data=meta1, slab=paste(meta1$first_author, meta1$year, sep=", "))
 cres<-cumul(res, order=order(meta1$year))
+
+meta1$IF<-c(2.27,0.967,0.967,0.967,1.29,0.41,0.967,0.967,0.967,0,0.538,2.055,2.53,2.53,0.622,1.92,1.895,0.94,1.895,0,0.967,1.75,6.36,0,0.41,0,0.41)
+cres2<-cumul(res, order=order(meta1$IF))
+
+#plot.cumul.rma(cres)
+
+
 #Figure1
 png("Figures/Figure1.png", width=850, height =400)
 forest(cres, col="blue")
 dev.off()
 
+forest(cres2, col="blue")
 #Cumulative data frame
 cumzval<-cumsum(cres$zval)
 cum_sample<-cumsum(meta1$alpha_point_n_identical)  

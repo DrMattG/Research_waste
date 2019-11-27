@@ -65,6 +65,7 @@ digraph boxes_and_circles {
 ")
 
 
+
 grViz("
 digraph boxes_and_circles {
 
@@ -112,14 +113,13 @@ digraph boxes_and_circles {
  }
       [1]: 'Questions relevant to stakeholders'
       [2]: 'Appropriate design & methods'
-      [3]: 'Accessible full publication'
-      [4]: 'Unbiased reporting'
+      [3]: 'Unbiased reporting'
+      [4]: 'Accessible full publication'
       [5]: 'Wasteful research'
       [6]: 'Evidence synthesis'
       [7]: 'Utilisable research' 
       [8]: 'Previous knowledge not accounted for'
       [9]: 'Poor design; \\nquestionable research practices'
-      [10]: 'Publications not available to practitioners \\n& decision makers'
-      [11]: 'Lack of transparency'
+      [10]: 'Lack of transparency'
+      [11]: 'Publications not available to practitioners \\n& decision makers'
   ", height=1000)
-
