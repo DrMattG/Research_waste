@@ -19,7 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 
 
-Matthew J. Grainger^1^*, Frederike C. Bolam^2^, Gavin B. Stewart^2^, Erlend B. Nilsen^1^
+Matthew J. Grainger^1^*, Friederike C. Bolam^2^, Gavin B. Stewart^2^, Erlend B. Nilsen^1^
 
 ^1^Norwegian Institute for Nature Research, P.O. Box 5685 Torgarden, 7485, Trondheim, Norway
 
@@ -283,8 +283,12 @@ forest(cres)
 
 ```
 
+Table 1 can be found at: https://github.com/DrMattG/Research_waste/blob/master/Manuscript/Table1.pdf
 
 ```{r, echo=FALSE}
+
+
+
 # df<-data.frame("Research Stage"=c("Questions relevant to stakeholders","Questions relevant to stakeholders","Appropriate design and methods","Appropriate design and methods",
 #                                   "Appropriate design and methods","Appropriate design and methods","Unbiased reporting","Unbiased reporting","Unbiased reporting","Unbiased reporting",
 #                                   "Unbiased reporting","Accessible full publication","Evidence synthesis"),
@@ -309,22 +313,6 @@ forest(cres)
 # library(kableExtra)
 # #knitr::kable(df)
 # df %>% kable("latex") %>% as_image()
-library(huxtable)
-ht <- hux(
-  Employee = c('John Smith', 'Jane Doe', 'David Hugh-Jones'),
-  Salary = c(50000, 50000, 40000),
-  add_colnames = TRUE
-)
-
-bold(ht)[1,]           <- TRUE
-bottom_border(ht)[1,]  <- 2
-align(ht)[,2]          <- 'right'
-right_padding(ht)      <- 10
-left_padding(ht)       <- 10
-width(ht)              <- 0.35
-number_format(ht)      <- 2
-
-ht
 
 ```
 

@@ -18,7 +18,7 @@ df<-data.frame("Research Stage"=c("Questions relevant to stakeholders","Question
                                   "Appropriate design and methods","Appropriate design and methods","Unbiased reporting","Unbiased reporting","Unbiased reporting","Unbiased reporting",
                                   "Unbiased reporting","Accessible full publication","Evidence synthesis"),
                "Examples of potential for research waste"=c("Irrelevant questions asked","Previous knowledge not properly taken into account","Study poorly designed, under-powered (or over-powered. etc.)",
-                                                            "Using inappropriate statistical tools (including overfitting etc.)","Questionable research practices3 lead to poor quality research","Questionable research practices3 lead to poor quality research",
+                                                            "Using inappropriate statistical tools (including overfitting etc.)","Questionable research practices lead to poor quality research","Questionable research practices lead to poor quality research",
                                                             "Lack of open data","Hypothesising after the results are known","p-hacking","File-drawer syndrome (only some studies are published)","Incomplete reporting, making evidence synthesis difficult or impossible",
                                                             "Publications not available to practitioners and decision makers","Research not designed or presented in the context of the existing knowledge"),
                "Where ecology and conservation can reduce waste"=c("Co-development of research questions with stakeholders and using appropriate methodology such as Delphi exercises to avoid issues such as group think or not including the right group of experts or stakeholders",
@@ -38,7 +38,7 @@ df<-data.frame("Research Stage"=c("Questions relevant to stakeholders","Question
 k<-kable(df,col.names = c("Research stage",
                            "Examples of potential for research waste",
                            "Where ecology and conservation can reduce waste"),booktabs = T, caption = "Table 1. The research process stages (adapted from Chalmers & Glasziou, 2009), examples of potential research waste and how ecology and conservation can limit these.",border_left = T, border_right = T) %>% column_spec(1, bold=T) %>% collapse_rows(columns = 1:3, latex_hline = "major", valign = "middle") %>% kable_styling()
-#save_kable(k, "C:/Users/matthew.grainger/OneDrive - NINA/Papers_in_prep/Cumulative_meta_analysis/Research_waste/Mansuscript/Table1.pdf")
+#save_kable(k, "table1.pdf")
 
 ```
 
