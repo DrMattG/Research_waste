@@ -1,0 +1,44 @@
+---
+title: "Evidence accumulation for tackling research waste (Supplement)"
+csl: nature.csl
+output:
+  pdf_document:
+    fig_caption: yes
+  word_document: 
+    fig_caption: yes
+  html_document: 
+    fig_caption: yes
+bibliography: bibliography.bib
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+Matthew J. Grainger^1^*, Friederike C. Bolam^2^, Gavin B. Stewart^2^, Erlend B. Nilsen^1^
+
+^1^Norwegian Institute for Nature Research, P.O. Box 5685 Torgarden, 7485, Trondheim, Norway
+
+^2^Modelling Evidence and Policy Research Group, School of Natural and Environmental Sciences, Ridley Building 2, Claremont Road, Newcastle upon Tyne NE1 7RU, UK  
+
+
+*corresponding author: matthew.grainger\@nina.no
+
+## Supplementary Information
+
+# Methods
+We extracted the data and R code from the supplementary information in [@darras2018comparing] to recreate their analysis. As such we are dependent on the accurate extraction of data from the primary studies by the original authors. We intended our re-analysis of their data to be an example of the cumulative meta-analysis approach rather than to make explicit recommendations about the use of acoustic recorders for avian surveys. Building on their random effects meta-analysis we ran a cumulative meta-analysis using the “cumul” function in the “metafor” [@metafor] package in R. The cumulative meta-analysis was ordered by publication year and plotted using the ggplot2 package in R[@ggplot2]. Where a single study provided more than one estimate of effect the order in which the estimates were accumulated was the same as the order presented by [@darras2018comparing] and treated as subsequent trials. Changing the order of that these particular studies were accumulated made no difference to the stability of the estimates over time (see the code for an assessment). The original code, the original data, our additional code for running the analysis and plotting can be found at https://github.com/DrMattG/Research_waste.
+
+
+
+# References {-}
+
+<div id="refs"></div>
+
+\newpage 
+
+
+
+
