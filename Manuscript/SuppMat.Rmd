@@ -2,11 +2,11 @@
 title: "Evidence accumulation for tackling research waste (Supplement)"
 csl: nature.csl
 output:
-  pdf_document:
+  html_document: 
     fig_caption: yes
   word_document: 
     fig_caption: yes
-  html_document: 
+  pdf_document:
     fig_caption: yes
 bibliography: bibliography.bib
 ---
@@ -36,11 +36,8 @@ We extracted the data and R code from the supplementary information in [@darras2
 
 library(DiagrammeR)
 
-<<<<<<< HEAD
-graph<-grViz("
-=======
+
 grViz("
->>>>>>> 6d37b77da54bb8505ab1cbd784aa2d5edb048899
     digraph boxes_and_circles {
     # a 'graph' statement
     graph [overlap = true, fontsize = 10]
@@ -103,15 +100,12 @@ grViz("
       [7]: 'Utilisable research' 
       [8]: 'Previous knowledge not accounted for'
       [9]: 'Poor design; \\nquestionable research practices'
-<<<<<<< HEAD
-        ")#, height=1000)
+                ", height=1000)
 
-graph
-=======
-        ", height=1000)
->>>>>>> 6d37b77da54bb8505ab1cbd784aa2d5edb048899
 
 ```
+
+
 
 # References {-}
 
