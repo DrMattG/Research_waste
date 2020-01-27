@@ -2,11 +2,11 @@
 title: "Evidence accumulation for tackling research waste"
 csl: nature.csl
 output:
-  html_document: 
+  pdf_document:
     fig_caption: yes
   word_document: 
     fig_caption: yes
-  pdf_document:
+  html_document: 
     fig_caption: yes
 bibliography: bibliography.bib
 ---

@@ -180,9 +180,9 @@ grViz("
          
         
     }
-       [1]: 'Questions are relevant to stakeholders'
-      [2]: 'Appropriate design & methods used'
-      [3]: 'Unbiased reporting'
+       [1]: 'Research question'
+      [2]: 'Study design & methods'
+      [3]: 'Reporting'
       [4]: 'Accessible full publication'
       [5]: 'Wasteful research'
       [6]: 'Evidence synthesis'

@@ -93,69 +93,69 @@ RMA_alpha_identical=rma.mv(yi=alpha_ROM_identical,V=alpha_variance_ROM_identical
 res <- rma(RMA_alpha_identical$yi, RMA_alpha_identical$vi, data=meta1, slab=paste(meta1$first_author, meta1$year, sep=", "))
 cres<-cumul(res, order=order(meta1$year))
 
-meta1$IF<-c(2.27,0.967,0.967,0.967,1.29,0.41,0.967,0.967,0.967,0,0.538,2.055,2.53,2.53,0.622,1.92,1.895,0.94,1.895,0,0.967,1.75,6.36,0,0.41,0,0.41)
-cres2<-cumul(res, order=order(meta1$IF))
+#meta1$IF<-c(2.27,0.967,0.967,0.967,1.29,0.41,0.967,0.967,0.967,0,0.538,2.055,2.53,2.53,0.622,1.92,1.895,0.94,1.895,0,0.967,1.75,6.36,0,0.41,0,0.41)
+#cres2<-cumul(res, order=order(meta1$IF))
 
 #plot.cumul.rma(cres)
 
 
 #Figure1
-png("Figures/Figure1.png", width=850, height =400)
+#png("Figures/Figure1.png", width=850, height =400)
 forest(cres, col="blue")
 dev.off()
 
-forest(cres2, col="blue")
+#forest(cres2, col="blue")
 #Cumulative data frame
-cumzval<-cumsum(cres$zval)
-cum_sample<-cumsum(meta1$alpha_point_n_identical)  
-Year=meta1$year
+#cumzval<-cumsum(cres$zval)
+#cum_sample<-cumsum(meta1$alpha_point_n_identical)  
+#Year=meta1$year
 
-Year=gsub("a","",Year)
-Year=gsub("b","",Year)
-Year<-as.integer(Year)
-Year<-Year[order(Year)]
+#Year=gsub("a","",Year)
+#Year=gsub("b","",Year)
+#Year<-as.integer(Year)
+#Year<-Year[order(Year)]
 
-cum_df<-data.frame("z-score"=cumzval, "Cumulative n"=cum_sample, "Year"=Year)
+#cum_df<-data.frame("z-score"=cumzval, "Cumulative n"=cum_sample, "Year"=Year)
 #Labelling dataframe
-cum_df2<-cum_df[c(1,18,27),]
-png("Figures/Figure2.png", width=850, height =400)
-cum_df %>% 
-  ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
-  scale_fill_npg()+
-  labs(y="Cumulative z score", x="Cumulative sample size")+
-  geom_point(size=6)+
-  geom_line(colour="blue", linetype="dashed", size=1)+
-  ylim(c(-20,20))+
-  xlim(c(0,2000))+
-  geom_text(data=cum_df2, aes(Cumulative.n,z.score,label=as.factor(Year)),hjust=1.3, vjust=1, colour="black")+
-  geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
-  geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
-  theme_classic() +
-  theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
-  theme(legend.position = "none")+
-  theme(text=element_text(size=16,  family="serif"))
+#cum_df2<-cum_df[c(1,18,27),]
+#png("Figures/Figure2.png", width=850, height =400)
+# cum_df %>% 
+#   ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
+#   scale_fill_npg()+
+#   labs(y="Cumulative z score", x="Cumulative sample size")+
+#   geom_point(size=6)+
+#   geom_line(colour="blue", linetype="dashed", size=1)+
+#   ylim(c(-20,20))+
+#   xlim(c(0,2000))+
+#   geom_text(data=cum_df2, aes(Cumulative.n,z.score,label=as.factor(Year)),hjust=1.3, vjust=1, colour="black")+
+#   geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
+#   geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
+#   theme_classic() +
+#   theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
+#   theme(legend.position = "none")+
+#   theme(text=element_text(size=16,  family="serif"))
   
 dev.off()
-#Animated Figure 2
-cum_df %>% 
-  rowid_to_column() %>% 
-  ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
-  scale_fill_npg()+
-  labs(y="Cumulative z score", x="Cumulative sample size")+
-  geom_point(size=6)+
-  geom_line(colour="blue", linetype="dashed", size=1)+
-  ylim(c(-20,20))+
-  xlim(c(0,2000))+
-  geom_text(aes(label=as.factor(Year)),hjust=1.3, vjust=1)+
-  geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
-  geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
-  theme_classic() +
-  theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
-  theme(legend.position = "none")+
-  theme(text=element_text(size=16,  family="serif"))+
-  transition_reveal(rowid)
-
-anim_save("Figures/Fig2animation.gif")
+# #Animated Figure 2
+# cum_df %>% 
+#   rowid_to_column() %>% 
+#   ggplot(aes(cum_sample,z.score, colour=as.factor(Year)))+
+#   scale_fill_npg()+
+#   labs(y="Cumulative z score", x="Cumulative sample size")+
+#   geom_point(size=6)+
+#   geom_line(colour="blue", linetype="dashed", size=1)+
+#   ylim(c(-20,20))+
+#   xlim(c(0,2000))+
+#   geom_text(aes(label=as.factor(Year)),hjust=1.3, vjust=1)+
+#   geom_hline(yintercept = 2, colour="red",linetype="dotted", size=1.6)+
+#   geom_hline(yintercept = -2, colour="red",linetype="dotted", size=1.6)+
+#   theme_classic() +
+#   theme(axis.line = element_line(size = 1.6, color = rgb(0,0,0,max=255)))+
+#   theme(legend.position = "none")+
+#   theme(text=element_text(size=16,  family="serif"))+
+#   transition_reveal(rowid)
+# 
+# anim_save("Figures/Fig2animation.gif")
 
 
 
