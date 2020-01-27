@@ -56,11 +56,19 @@ In addition, publication bias, where the direction of statistical significance o
 Without deliberate research programs of sequential research focused on specific questions in ecology, as proposed in [@nichols2019accumulating], we need to find ways of  synthesising diverse information sources. Methodologists propose use of systems models to combine empirical evidence from systematic reviews and meta-analysis with expert opinion which allows key areas of uncertainty in a topic to be identified and prioritised for research focus (e.g. [@carrick2018planting]).  Formal value of information analysis can then be undertaken if a decision-theoretic framework exists.
 
 ## Outlook
+<<<<<<< HEAD
 
 Research waste can be reduced and it is the responsibility of research funders, research institutions as well as individual researchers to do so. Researchers and funders could search for existing research syntheses in the literature and on synthesis platforms (e.g. https://www.conservationevidence.com/). We agree with the statement targeted at medicine 25 years ago that “We need...better research, and research done for the right reasons” [@altman1994scandal]. Without a change in focus ecology and conservation funding will continue to be wasted which will be detrimental to our efforts to provide solutions to global societal challenges.   
 
 ### Box 1 Using cumulative meta-analysis to make research decisions
 
+=======
+
+Research waste can be reduced and it is the responsibility of research funders, research institutions as well as individual researchers to do so. Researchers and funders could search for existing research syntheses in the literature and on synthesis platforms (e.g. https://www.conservationevidence.com/). We agree with the statement targeted at medicine 25 years ago that “We need...better research, and research done for the right reasons” [@altman1994scandal]. Without a change in focus ecology and conservation funding will continue to be wasted which will be detrimental to our efforts to provide solutions to global societal challenges.   
+
+### Box 1 Using cumulative meta-analysis to make research decisions
+
+>>>>>>> 6d37b77da54bb8505ab1cbd784aa2d5edb048899
 Imagine you, as a researcher or research funder, want to assess the potential for acoustic recorders to replace human observers for estimating bird abundance. Do we need another research study to determine this? Here we outline an example decision process which would serve to reduce research waste.
 
 * **Is there previous knowledge available on this topic?** Technological advances over the last two decades have allowed this potential to be explored fully, and well over 150 field studies have sought to answer this question. A meta-analysis in 201815 explored the pooled effect of these studies using a meta-analytic approach to estimate species richness of birds. Twenty-eight primary studies published between 2000 and 2017 were included in the meta-analysis. Based on the combined evidence from the included studies, they concluded that when human observers (using point counts) and sound recorders sample areas of equal size then there is no difference between estimates of bird species richness. When properly conducted (see specific advice in [@darras2018comparing]), it can be inferred that sound recorders can be used to monitor aspects of biodiversity as efficiently as human observers. 
@@ -198,12 +206,21 @@ p<-df %>%
         axis.ticks = element_line(colour = "black", size = 1))
 p
 
+<<<<<<< HEAD
 #ggsave("C:/Users/matthew.grainger/OneDrive - NINA/Papers_in_prep/Cumulative_meta_analysis/Research_waste/Figures/Fig1._Cumulative_Forest.png", p, device = "png")
 
 ```
+=======
+```
+
+
+>>>>>>> 6d37b77da54bb8505ab1cbd784aa2d5edb048899
 
 
 
+<<<<<<< HEAD
 
 Table 1 can be found at: https://github.com/DrMattG/Research_waste/blob/master/Manuscript/Table1.pdf
 
+=======
+>>>>>>> 6d37b77da54bb8505ab1cbd784aa2d5edb048899
