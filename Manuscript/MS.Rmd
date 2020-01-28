@@ -204,7 +204,7 @@ p<-df %>%
         axis.ticks = element_line(colour = "black", size = 1))
 p
 
-#ggsave("C:/Users/matthew.grainger/OneDrive - NINA/Papers_in_prep/Cumulative_meta_analysis/Research_waste/Figures/Fig1._Cumulative_Forest.png", p, device = "png")
+#ggsave("C:/Users/matthew.grainger/OneDrive - NINA/Papers_in_prep/Cumulative_meta_analysis/Research_waste/Figures/Fig1._Cumulative_Forest.pdf", p, device = "pdf")
 
 ```
 
